@@ -18,7 +18,7 @@
     .cta { text-align: center; }
     .cta button { background: linear-gradient(135deg, #f00075, #fc6a00); color: white; padding: 0.75rem 1.5rem; border: none; border-radius: 30px; font-size: 1rem; cursor: pointer; transition: transform 0.2s ease; }
     .cta button:hover { transform: scale(1.05); }
-    .features { margin-top: 3rem; max-width: 700px; margin-left: auto; margin-right: auto; }
+    .features { margin-top: 3rem; max-width: 700px; margin: auto; }
     .features h2 { text-align: center; margin-bottom: 1rem; font-size: 1.5rem; }
     .features ul { list-style: none; padding: 0; }
     .features li { background: #f2f2f2; margin-bottom: 1rem; padding: 1rem; border-radius: 10px; }
@@ -26,37 +26,43 @@
   </style>
 </head>
 <body>
-  <header>
-    <div class="logo">
-      <div class="logo-icon">▶</div>
-      <h1>ViewMagnate</h1>
-    </div>
-    <p class="tagline">One Tap. One Prompt. Unlimited Views.</p>
-  </header>
-  <div class="cta">
-    <button>Join the Waitlist</button>
-  </div>
-  <section class="features">
-    <h2>What You Get</h2>
-    <ul>
-      <li>AI-powered thumbnail creation using viral design data</li>
-      <li>Lightning-fast: Enter a one-liner, get a viral thumbnail</li>
-      <li>Works on both Web & Mobile (coming soon)</li>
-      <li>Designed for Reels, Shorts, and YouTube creators</li>
-      <li>Monetize your views with scroll-stopping visuals</li>
-    </ul>
-  </section>
+  <header><div class="logo"><div class="logo-icon">▶</div><h1>ViewMagnate</h1></div><p class="tagline">One Tap. One Prompt. Unlimited Views.</p></header>
+  <div class="cta"><button>Join the Waitlist</button></div>
+  <section class="features"><h2>What You Get</h2><ul>
+    <li>AI-powered thumbnail creation using viral design data</li>
+    <li>Lightning-fast: Enter a one-liner, get a viral thumbnail</li>
+    <li>Works on both Web & Mobile (coming soon)</li>
+    <li>Designed for Reels, Shorts, and YouTube creators</li>
+    <li>Monetize your views with scroll-stopping visuals</li>
+  </ul></section>
   <footer>&copy; 2025 ViewMagnate. All rights reserved.</footer>
   <script>
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', function () {
-        navigator.serviceWorker.register('service-worker.js').then(function (registration) {
-          console.log('ServiceWorker registration successful with scope: ', registration.scope);
+        navigator.serviceWorker.register('service-worker.js').then(function (reg) {
+          console.log('SW registered: ', reg.scope);
         }, function (err) {
-          console.log('ServiceWorker registration failed: ', err);
+          console.log('SW registration failed: ', err);
         });
       });
     }
+    let deferredPrompt;
+    window.addEventListener('beforeinstallprompt', (e) => {
+      e.preventDefault();
+      deferredPrompt = e;
+      const installBtn = document.createElement('button');
+      installBtn.textContent = '📲 Install ViewMagnate App';
+      installBtn.style = 'display:block;margin:2rem auto;padding:0.75rem 1.5rem;font-size:1rem;background:linear-gradient(135deg,#f00075,#fc6a00);color:white;border:none;border-radius:30px;cursor:pointer;';
+      installBtn.addEventListener('click', () => {
+        installBtn.style.display = 'none';
+        deferredPrompt.prompt();
+        deferredPrompt.userChoice.then((choice) => {
+          console.log(choice.outcome === 'accepted' ? 'Accepted' : 'Dismissed');
+          deferredPrompt = null;
+        });
+      });
+      document.querySelector('.cta').appendChild(installBtn);
+    });
   </script>
 </body>
 </html>
