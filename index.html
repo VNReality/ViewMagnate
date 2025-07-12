@@ -27,7 +27,16 @@
 </head>
 <body>
   <header><div class="logo"><div class="logo-icon">▶</div><h1>ViewMagnate</h1></div><p class="tagline">One Tap. One Prompt. Unlimited Views.</p></header>
-  <div class="cta"><button>Join the Waitlist</button></div>
+  
+  <div class="cta">
+    <form action="#" method="POST" onsubmit="alert('Form submitted! (Connect to backend)'); return false;" style="display: flex; flex-direction: column; align-items: center; gap: 1rem;">
+      <input type="text" name="name" placeholder="Full Name" required style="padding: 0.7rem 1rem; width: 90%; max-width: 400px; border: 1px solid #ccc; border-radius: 25px;" />
+      <input type="email" name="email" placeholder="Email Address" required style="padding: 0.7rem 1rem; width: 90%; max-width: 400px; border: 1px solid #ccc; border-radius: 25px;" />
+      <input type="tel" name="phone" placeholder="+91-1234567890" required style="padding: 0.7rem 1rem; width: 90%; max-width: 400px; border: 1px solid #ccc; border-radius: 25px;" />
+      <button type="submit" style="background: linear-gradient(135deg, #f00075, #fc6a00); color: white; padding: 0.75rem 1.5rem; border: none; border-radius: 30px; font-size: 1rem; cursor: pointer;">Join the Waitlist</button>
+    </form>
+  </div>
+
   <section class="features"><h2>What You Get</h2><ul>
     <li>AI-powered thumbnail creation using viral design data</li>
     <li>Lightning-fast: Enter a one-liner, get a viral thumbnail</li>
