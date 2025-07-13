@@ -15,10 +15,11 @@
     .logo-icon { width: 40px; height: 40px; background: linear-gradient(135deg, #f00075, #fc6a00); border-radius: 50%; display: flex; justify-content: center; align-items: center; color: #fff; font-weight: bold; font-size: 1.2rem; }
     h1 { font-size: 2.2rem; color: #111; }
     p.tagline { font-size: 1.1rem; color: #555; margin-bottom: 2rem; }
-    .cta { text-align: center; }
-    .cta button { background: linear-gradient(135deg, #f00075, #fc6a00); color: white; padding: 0.75rem 1.5rem; border: none; border-radius: 30px; font-size: 1rem; cursor: pointer; transition: transform 0.2s ease; }
-    .cta button:hover { transform: scale(1.05); }
-    .features { margin-top: 3rem; max-width: 700px; margin: auto; }
+    form { max-width: 400px; margin: 0 auto 2rem auto; display: flex; flex-direction: column; gap: 1rem; }
+    input { padding: 0.75rem; border-radius: 10px; border: 1px solid #ccc; font-size: 1rem; }
+    .cta button, form button { background: linear-gradient(135deg, #f00075, #fc6a00); color: white; padding: 0.75rem 1.5rem; border: none; border-radius: 30px; font-size: 1rem; cursor: pointer; transition: transform 0.2s ease; }
+    .cta button:hover, form button:hover { transform: scale(1.05); }
+    .features { margin-top: 3rem; max-width: 700px; margin-left: auto; margin-right: auto; }
     .features h2 { text-align: center; margin-bottom: 1rem; font-size: 1.5rem; }
     .features ul { list-style: none; padding: 0; }
     .features li { background: #f2f2f2; margin-bottom: 1rem; padding: 1rem; border-radius: 10px; }
@@ -26,52 +27,46 @@
   </style>
 </head>
 <body>
-  <header><div class="logo"><div class="logo-icon">▶</div><h1>ViewMagnate</h1></div><p class="tagline">One Tap. One Prompt. Unlimited Views.</p></header>
-  
-  <div class="cta">
-    <form action="#" method="POST" onsubmit="alert('Form submitted! (Connect to backend)'); return false;" style="display: flex; flex-direction: column; align-items: center; gap: 1rem;">
-      <input type="text" name="name" placeholder="Full Name" required style="padding: 0.7rem 1rem; width: 90%; max-width: 400px; border: 1px solid #ccc; border-radius: 25px;" />
-      <input type="email" name="email" placeholder="Email Address" required style="padding: 0.7rem 1rem; width: 90%; max-width: 400px; border: 1px solid #ccc; border-radius: 25px;" />
-      <input type="tel" name="phone" placeholder="+91-1234567890" required style="padding: 0.7rem 1rem; width: 90%; max-width: 400px; border: 1px solid #ccc; border-radius: 25px;" />
-      <button type="submit" style="background: linear-gradient(135deg, #f00075, #fc6a00); color: white; padding: 0.75rem 1.5rem; border: none; border-radius: 30px; font-size: 1rem; cursor: pointer;">Join the Waitlist</button>
-    </form>
-  </div>
+  <header>
+    <div class="logo">
+      <div class="logo-icon">▶</div>
+      <h1>ViewMagnate</h1>
+    </div>
+    <p class="tagline">One Tap. One Prompt. Unlimited Views.</p>
+  </header>
 
-  <section class="features"><h2>What You Get</h2><ul>
-    <li>AI-powered thumbnail creation using viral design data</li>
-    <li>Lightning-fast: Enter a one-liner, get a viral thumbnail</li>
-    <li>Works on both Web & Mobile (coming soon)</li>
-    <li>Designed for Reels, Shorts, and YouTube creators</li>
-    <li>Monetize your views with scroll-stopping visuals</li>
-  </ul></section>
-  <footer>&copy; 2025 ViewMagnate. All rights reserved.</footer>
+  <form action="https://docs.google.com/forms/d/e/1FAIpQLScx2_d6tApbr1YO0HwgN5H8739ixhLRjO0HHJUkBVwNjZLoVw/formResponse" method="POST" target="_blank">
+    <input name="entry.2005620554" type="text" placeholder="Your Name" required>
+    <input name="entry.1045781291" type="email" placeholder="Email Address" required>
+    <input name="entry.1166974658" type="tel" placeholder="Phone with country code" required>
+    <button type="submit">Join the Waitlist</button>
+  </form>
+
+  <section class="features">
+    <h2>What You Get</h2>
+    <ul>
+      <li>AI-powered thumbnail creation using viral design data</li>
+      <li>Lightning-fast: Enter a one-liner, get a viral thumbnail</li>
+      <li>Works on both Web & Mobile (coming soon)</li>
+      <li>Designed for Reels, Shorts, and YouTube creators</li>
+      <li>Monetize your views with scroll-stopping visuals</li>
+    </ul>
+  </section>
+
+  <footer>
+    &copy; 2025 ViewMagnate. All rights reserved.
+  </footer>
+
   <script>
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', function () {
-        navigator.serviceWorker.register('service-worker.js').then(function (reg) {
-          console.log('SW registered: ', reg.scope);
+        navigator.serviceWorker.register('service-worker.js').then(function (registration) {
+          console.log('ServiceWorker registration successful with scope: ', registration.scope);
         }, function (err) {
-          console.log('SW registration failed: ', err);
+          console.log('ServiceWorker registration failed: ', err);
         });
       });
     }
-    let deferredPrompt;
-    window.addEventListener('beforeinstallprompt', (e) => {
-      e.preventDefault();
-      deferredPrompt = e;
-      const installBtn = document.createElement('button');
-      installBtn.textContent = '📲 Install ViewMagnate App';
-      installBtn.style = 'display:block;margin:2rem auto;padding:0.75rem 1.5rem;font-size:1rem;background:linear-gradient(135deg,#f00075,#fc6a00);color:white;border:none;border-radius:30px;cursor:pointer;';
-      installBtn.addEventListener('click', () => {
-        installBtn.style.display = 'none';
-        deferredPrompt.prompt();
-        deferredPrompt.userChoice.then((choice) => {
-          console.log(choice.outcome === 'accepted' ? 'Accepted' : 'Dismissed');
-          deferredPrompt = null;
-        });
-      });
-      document.querySelector('.cta').appendChild(installBtn);
-    });
   </script>
 </body>
 </html>
