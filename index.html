@@ -3,27 +3,40 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ViewMagnate - One Tap Viral Thumbnails</title>
-  <link rel="manifest" href="manifest.json">
+  <title>ViewMagnate – One Tap Viral Thumbnails</title>
+  <link rel="manifest" href="manifest.json" />
   <meta name="theme-color" content="#fc6a00" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet" />
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
-    body { background: linear-gradient(to bottom, #f9f9f9, #fff); color: #222; line-height: 1.6; padding: 2rem; }
-    header { text-align: center; margin-bottom: 2rem; }
-    .logo { display: flex; justify-content: center; align-items: center; gap: 0.5rem; margin-bottom: 1rem; }
-    .logo-icon { width: 40px; height: 40px; background: linear-gradient(135deg, #f00075, #fc6a00); border-radius: 50%; display: flex; justify-content: center; align-items: center; color: #fff; font-weight: bold; font-size: 1.2rem; }
-    h1 { font-size: 2.2rem; color: #111; }
-    p.tagline { font-size: 1.1rem; color: #555; margin-bottom: 2rem; }
-    form { max-width: 400px; margin: 0 auto 2rem auto; display: flex; flex-direction: column; gap: 1rem; }
-    input { padding: 0.75rem; border-radius: 10px; border: 1px solid #ccc; font-size: 1rem; }
-    .cta button, form button { background: linear-gradient(135deg, #f00075, #fc6a00); color: white; padding: 0.75rem 1.5rem; border: none; border-radius: 30px; font-size: 1rem; cursor: pointer; transition: transform 0.2s ease; }
-    .cta button:hover, form button:hover { transform: scale(1.05); }
-    .features { margin-top: 3rem; max-width: 700px; margin-left: auto; margin-right: auto; }
-    .features h2 { text-align: center; margin-bottom: 1rem; font-size: 1.5rem; }
-    .features ul { list-style: none; padding: 0; }
-    .features li { background: #f2f2f2; margin-bottom: 1rem; padding: 1rem; border-radius: 10px; }
-    footer { margin-top: 4rem; text-align: center; color: #aaa; font-size: 0.9rem; }
+    * { margin:0; padding:0; box-sizing:border-box; font-family:'Inter', sans-serif; }
+    body { background:linear-gradient(to bottom,#f9f9f9,#fff); color:#222; line-height:1.6; padding:2rem; }
+    .logo, header, .cta, .features, footer { text-align:center; margin-bottom:2rem; }
+    .logo { display:flex; align-items:center; justify-content:center; gap:.5rem; }
+    .logo-icon { width:40px; height:40px; background:linear-gradient(135deg,#f00075,#fc6a00); border-radius:50%; display:flex; align-items:center; justify-content:center; color:#fff; font-weight:bold; font-size:1.2rem; }
+    h1 { font-size:2.2rem; color:#111; }
+    p.tagline { font-size:1.1rem; color:#555; }
+    .cta a {
+      text-decoration: none;
+    }
+    .cta a button {
+      width:100%;
+      max-width:350px;
+      margin:auto;
+      display:block;
+      background:linear-gradient(135deg,#f00075,#fc6a00);
+      color:#fff;
+      padding:.75rem 1.5rem;
+      border:none;
+      border-radius:30px;
+      font-size:1rem;
+      cursor:pointer;
+      transition:transform .2s ease;
+    }
+    .cta a button:hover { transform:scale(1.05); }
+    .features { max-width:700px; margin:auto; }
+    .features ul { list-style:none; padding:0; }
+    .features li { background:#f2f2f2; margin-bottom:1rem; padding:1rem; border-radius:10px; text-align:left; }
+    footer { color:#aaa; font-size:.9rem; }
   </style>
 </head>
 <body>
@@ -35,35 +48,67 @@
     <p class="tagline">One Tap. One Prompt. Unlimited Views.</p>
   </header>
 
-  <form action="https://docs.google.com/forms/d/e/1FAIpQLScx2_d6tApbr1YO0HwgN5H8739ixhLRjO0HHJUkBVwNjZLoVw/formResponse" method="POST" target="_blank">
-    <button type="submit">Join the Waitlist</button>
-  </form>
+  <div class="cta">
+    <a href="https://docs.google.com/forms/d/e/1FAIpQLScx2_d6tApbr1YO0HwgN5H8739ixhLRjO0HHJUkBVwNjZLoVw/viewform" target="_blank" rel="noopener">
+      <button>Join the Waitlist</button>
+    </a>
+  </div>
 
   <section class="features">
     <h2>What You Get</h2>
     <ul>
-      <li>AI-powered thumbnail creation using viral design data</li>
-      <li>Lightning-fast: Enter a one-liner, get a viral thumbnail</li>
+      <li>AI‑powered thumbnail creation using viral design data</li>
+      <li>Lightning‑fast: One‑liner prompt → viral thumbnail</li>
       <li>Works on both Web & Mobile (coming soon)</li>
       <li>Designed for Reels, Shorts, and YouTube creators</li>
-      <li>Monetize your views with scroll-stopping visuals</li>
+      <li>Monetize your views with scroll‑stopping visuals</li>
     </ul>
   </section>
 
-  <footer>
-    &copy; 2025 ViewMagnate. All rights reserved.
-  </footer>
+  <footer>&copy; 2025 ViewMagnate. All rights reserved.</footer>
 
   <script>
     if ('serviceWorker' in navigator) {
-      window.addEventListener('load', function () {
-        navigator.serviceWorker.register('service-worker.js').then(function (registration) {
-          console.log('ServiceWorker registration successful with scope: ', registration.scope);
-        }, function (err) {
-          console.log('ServiceWorker registration failed: ', err);
-        });
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('service-worker.js')
+          .then(reg => console.log('SW registered:', reg.scope))
+          .catch(err => console.log('SW failed:', err));
       });
     }
+
+    // PWA Install prompt logic
+    let deferredPrompt;
+    window.addEventListener('beforeinstallprompt', (e) => {
+      e.preventDefault();
+      deferredPrompt = e;
+
+      const btn = document.createElement('button');
+      btn.textContent = '📲 Install ViewMagnate App';
+      btn.style = `
+        display:block;
+        margin:1.5rem auto;
+        padding:.75rem 1.5rem;
+        font-size:1rem;
+        background:linear-gradient(135deg,#f00075,#fc6a00);
+        color:white;
+        border:none;
+        border-radius:30px;
+        cursor:pointer;
+      `;
+
+      btn.addEventListener('click', () => {
+        deferredPrompt.prompt();
+        btn.style.display = 'none';
+        deferredPrompt.userChoice.then(choice => {
+          console.log(choice.outcome === 'accepted' ? 'Installed' : 'Dismissed');
+          deferredPrompt = null;
+        });
+      });
+
+      document.querySelector('.cta').appendChild(btn);
+    });
+
+    window.addEventListener('appinstalled', () => console.log('App installed'));
   </script>
 </body>
 </html>
